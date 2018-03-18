@@ -35,8 +35,7 @@ const devConfig = {
 };
 
 module.exports = merge({
-    customizeArray(a, b, key) {
-        /*entry.app不合并，全替换*/
+    customizeArray(a, b, key) {       
         if (key === 'entry.app') {
             return b;
         }
