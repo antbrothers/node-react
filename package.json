@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --hot --inline --port 8080 --host 172.31.32.45"
+    "dev-build": "webpack --config webpack.dev.config.js",
+    "start": "webpack-dev-server --config webpack.dev.config.js --color --progress --hot",
+    "build": "webpack --config webpack.config.js",
+    "mock": "json-server mock/mock.js --watch --port 8090",
+    "mockdev": "npm run mock & npm start"
   },
   "author": "jianxi_lin@163.com",
   "license": "ISC",

@@ -27,7 +27,7 @@ const devConfig = {
         port: 8080,
         contentBase: path.join(__dirname, './dist'),
         historyApiFallback: true,
-        host: '0.0.0.0',
+        host: '172.31.32.45',
         proxy: {
             "/api/*": "http://localhost:8090/$1"
         }
