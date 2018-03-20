@@ -2,7 +2,7 @@
  * @Author: jianxi_lin
  * @Dec: 创建数据库链接
  * @Date: 2018-03-20 16:42:33 
- * @Last Modified by: yunkus.com
+ * @Last Modified by: jianxi_lin
  * @Last Modified time: 2018-03-20 16:53:29
  */
 var mysql = require('mysql')

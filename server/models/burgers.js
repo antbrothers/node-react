@@ -2,7 +2,7 @@
  * @Author: jianxi_lin
  * @Dec: burgers 模型
  * @Date: 2018-03-20 17:36:32 
- * @Last Modified by: yunkus.com
+ * @Last Modified by: jianxi_lin
  * @Last Modified time: 2018-03-20 18:06:35
  */
 
