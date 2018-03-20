@@ -8,10 +8,9 @@ let fs = require('fs');
 /**
  * 通过promise获取到静态数据
  */
-let readFileData = () => {
-    debugger
+let readFileData = () => {   
     let promise = new Promise((resolve, reject) => {
-        fs.readFile("./public/database/database.json", "utf-8", (err, data) => {
+        fs.readFile("./server/public/database/database.json", "utf-8", (err, data) => {
             if (err) {
                 console.log(err);
                 reject("read filedata error")
@@ -56,7 +55,7 @@ readFileData().then((data) => {
 }, (err) => {
     console.log(err);
 });
-getFileName("./public/images/swiper", "swiper").then((files) => {
+getFileName("./server/public/images/swiper", "swiper").then((files) => {
     imgNames = files
 }, (err) => {
     console.log(err)
