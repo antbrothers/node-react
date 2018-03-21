@@ -9,7 +9,7 @@ const initState = {
 export default function reducer(state = initState, action) {
     switch (action.type) {
         case INCREMENT:
-            return {
+            return {                
                 count: state.count + 1
             };
         case DECREMENT:
