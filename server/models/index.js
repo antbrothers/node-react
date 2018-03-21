@@ -1,7 +1,7 @@
-var  fs = require('fs');
-var path  = require('path');
+var fs = require('fs');
+var path = require('path');
 var Sequelize = require('sequelize');
-var  config = require('../config/config');
+var config = require('../config/config');
 
 const basename = path.basename(module.filename);
 const db = {};
@@ -12,7 +12,7 @@ let sequelize;
 try {
     sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.password, dbConfig);
     console.log("connection to the db....")
-} catch(e) {
+} catch (e) {
     console.log(e);
     throw e;
 }
@@ -24,10 +24,10 @@ fs.readdirSync(__dirname).filter((file) => {
     db[model.name] = model;
 })
 
-Object.keys(db).forEach(function(modelName) {
+Object.keys(db).forEach(function (modelName) {
     if (db[modelName].associate) {
         db[modelName].associate(db);
-      }
+    }
 })
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
