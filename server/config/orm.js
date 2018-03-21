@@ -3,7 +3,7 @@
  * @Dec: 创建sql语句
  * @Date: 2018-03-20 16:53:54 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-03-21 09:37:23
+ * @Last Modified time: 2018-03-21 10:14:10
  */
 
  var connection = require("../config/connection.js")
@@ -58,7 +58,20 @@
              } 
              cb(result);
          });
-     }
+     },
+     /**
+      * 删除数据
+      */
+     deleteOne: function(table, condition, cb) {
+         var queryString = " DELETE from " + table + " WHERE " + condition;
+         connection.query(queryString, function(err, result) {
+             if (err) {
+                 throw err;
+             }
+             cb(result);            
+         })
+
+     }          
  };
  module.exports = orm;
 

@@ -2,7 +2,7 @@
  * @Author: jianxi_lin
  * @Date: 2018-03-20 17:26:52 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-03-21 09:19:17
+ * @Last Modified time: 2018-03-21 10:24:46
  */
 
 var express = require("express");
@@ -18,7 +18,6 @@ router.get("/", function(req, res) {
         res.send(hbsObject);
     });  
 });
-
 router.post("/api/burgers", function(req, res) {
     debugger;
     burger.create(["burger_name", "devoured"], [req.body.burger_name, false], function(result) {
@@ -43,6 +42,13 @@ router.put("/api/burgers/:id", function(req, res) {
         }
     );
 });
+
+router.delete("/api/delBurgers", function(req, res) {
+    var condition = "id=" + req.query.id;
+    burger.delete(condition, function(result) {
+        res.send(result);       
+    })
+})
 
 
 module.exports = router;

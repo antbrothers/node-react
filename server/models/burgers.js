@@ -3,7 +3,7 @@
  * @Dec: burgers 模型
  * @Date: 2018-03-20 17:36:32 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-03-20 18:06:35
+ * @Last Modified time: 2018-03-21 10:20:17
  */
 
  var orm = require("../config/orm.js")
@@ -30,6 +30,15 @@
       */
      update: function(objColVals, condition, cb) {
          orm.updateOne("burgers", objColVals, condition, function(res) {
+             cb(res);
+         });
+     },
+     
+     /**
+      * buerge 删除数据
+      */
+     delete: function(condition, cb) {
+         orm.deleteOne("burgers", condition, function(res) {
              cb(res);
          });
      }
