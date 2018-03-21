@@ -1,8 +1,8 @@
 /*
  * @Author: jianxi_lin 
  * @Date: 2018-03-21 09:22:02 
- * @Last Modified by:   jianxi_lin 
- * @Last Modified time: 2018-03-21 09:22:02 
+ * @Last Modified by: jianxi_lin
+ * @Last Modified time: 2018-03-21 17:49:25
  */
 var express = require('express');
 var path = require('path');
@@ -13,9 +13,10 @@ var bodyParser = require('body-parser');
 var ejs = require('ejs');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
-var data = require('./routes/data');
-var bergers = require('./controllers/burgers_controller')
+// var users = require('./routes/users');
+//var data = require('./routes/data');
+// var bergers = require('./controllers/burgers_controller')
+var user  = require('./routes/user')
 
 var app = express();
 
@@ -35,10 +36,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
-app.use('/data/swiper', data.swiper);
-app.use('/data/test', data.test);
-app.use('/bergers', bergers);
+// app.use('/users', users);
+//app.use('/data/swiper', data.swiper);
+//app.use('/data/test', data.test);
+ // app.use('/bergers', bergers);
+ app.use('/use', user)
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
