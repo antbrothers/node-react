@@ -1,3 +1,9 @@
+/*
+ * @Author: jianxi_lin 
+ * @Date: 2018-03-21 09:22:02 
+ * @Last Modified by:   jianxi_lin 
+ * @Last Modified time: 2018-03-21 09:22:02 
+ */
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -30,9 +36,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/data/swiper', data.swiper)
-app.use('/data/test', data.test)
-app.use(bergers)
+app.use('/data/swiper', data.swiper);
+app.use('/data/test', data.test);
+app.use('/bergers', bergers);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

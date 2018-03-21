@@ -10,7 +10,7 @@ let fs = require('fs');
  */
 let readFileData = () => {   
     let promise = new Promise((resolve, reject) => {
-        fs.readFile("./server/public/database/database.json", "utf-8", (err, data) => {
+        fs.readFile("./public/database/database.json", "utf-8", (err, data) => {
             if (err) {
                 console.log(err);
                 reject("read filedata error")
@@ -55,7 +55,7 @@ readFileData().then((data) => {
 }, (err) => {
     console.log(err);
 });
-getFileName("./server/public/images/swiper", "swiper").then((files) => {
+getFileName("./public/images/swiper", "swiper").then((files) => {
     imgNames = files
 }, (err) => {
     console.log(err)
