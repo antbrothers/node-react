@@ -14,6 +14,8 @@ var path = require('path');
 
 // 日志打印位置
 const LOGS_DIR = path.join(__dirname, '../logs');
+const TSFORMAT = () => (new Date()).toLocaleTimeString();
+
 // 公共配置选项
 const LOGGER_COMMON_CONFIG = {
     meta: true,
@@ -22,6 +24,7 @@ const LOGGER_COMMON_CONFIG = {
     colorize: true,
     ignoreRoute: function (req, res) { return false; }
 };
+expressWinston.requestWhitelist.push('body');
 var Logger = {
     /**
      * 在路由之前记录
@@ -31,18 +34,19 @@ var Logger = {
         app.use(expressWinston.logger({
             transports: [
                 // 控制台
-                new winston.transports.Console({
+                new (winston.transports.Console)({
                     json: true,
                     colorize: true
                 }),
                 // 文件
                 new winston.transports.File({
                     level: 'info',                                   
-                    filename: LOGS_DIR + '/access.log.txt'                   
-                })                    
+                    filename: LOGS_DIR + '/access.log.txt',                   
+                    timestamp: () => moment().format('YYYY-MM-DD HH:mm:ss.SSS'),                            
+                })                             
             ],
            LOGGER_COMMON_CONFIG
-        }))
+        }))        
     },
     /**
      * 在路由之后由意义
