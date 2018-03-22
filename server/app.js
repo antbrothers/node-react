@@ -1,8 +1,8 @@
 /*
- * @Author: jianxi_lin 
+ * @Author: jianxi_lin  
  * @Date: 2018-03-21 09:22:02 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-03-21 17:49:25
+ * @Last Modified time: 2018-03-22 16:35:53
  */
 var express = require('express');
 var path = require('path');
@@ -11,19 +11,19 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
+var winston = require('./util/logger');
 
 var index = require('./routes/index');
-// var users = require('./routes/users');
-//var data = require('./routes/data');
-// var bergers = require('./controllers/burgers_controller')
-var user  = require('./routes/user')
+var user = require('./routes/user')
 
 var app = express();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', ejs.__express)
- app.set('view engine', 'html');
+app.set('view engine', 'html');
 
 
 
@@ -35,29 +35,31 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// 初始化日志模块
+winston.initRequestLogger(app);
+
 app.use('/', index);
-// app.use('/users', users);
-//app.use('/data/swiper', data.swiper);
-//app.use('/data/test', data.test);
- // app.use('/bergers', bergers);
- app.use('/use', user)
+app.use('/use', user)
+
+
+winston.initErrorLogger(app);
 
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
+
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
