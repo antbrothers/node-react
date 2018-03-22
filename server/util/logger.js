@@ -3,7 +3,7 @@
  * 日志模块
  * @Date: 2018-03-22 13:50:55 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-03-22 18:00:33
+ * @Last Modified time: 2018-03-22 18:07:44
  */
 var winston = require('winston');
 var expressWinston = require('express-winston');
@@ -22,24 +22,13 @@ const LOGGER_COMMON_CONFIG = {
     colorize: true,
     ignoreRoute: function (req, res) { return false; }
 };
-var transport = new (winston.transports.DailyRotateFile)({
-    filename: LOGS_DIR +'application-%DATE%.log',
-    datePattern: 'YYYY-MM-DD-HH',
-    zippedArchive: true,
-    maxSize: '20m',
-    maxFiles: '14d'
-  });
-
-  transport.on('rotate', function(oldFilename, newFilename) {
-    // do something fun
-  });
 var Logger = {
     /**
      * 在路由之前记录
      * @param {*} app 
      */
     initRequestLogger(app) {
-        app.use(expressWinston.errorLogger({
+        app.use(expressWinston.logger({
             transports: [
                 // 控制台
                 new winston.transports.Console({
@@ -48,11 +37,9 @@ var Logger = {
                 }),
                 // 文件
                 new winston.transports.File({
-                    level: 'info',                
-                    json: true,
+                    level: 'info',                                   
                     filename: LOGS_DIR + '/access.log.txt'                   
-                }) 
-                // transport              
+                })                    
             ],
            LOGGER_COMMON_CONFIG
         }))
@@ -63,7 +50,7 @@ var Logger = {
      * @param {} app 
      */
     initErrorLogger(app) {
-        app.use(expressWinston.errorLogger({
+        app.use(expressWinston.logger({
             transports: [
                 new winston.transports.Console({
                     json: true,
