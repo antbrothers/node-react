@@ -2,7 +2,7 @@
  * @Author: jianxi_lin  
  * @Date: 2018-03-21 09:22:02 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-03-22 16:35:53
+ * @Last Modified time: 2018-03-23 17:40:20
  */
 var express = require('express');
 var path = require('path');
@@ -12,9 +12,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
 var winston = require('./util/logger');
-
-var index = require('./routes/index');
-var user = require('./routes/user')
+var rest = require('./middleware/rest')
+var controller = require('./controller')
+// var index = require('./routes/index');
+// var user = require('./routes/user')
 
 var app = express();
 
@@ -39,11 +40,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 初始化日志模块
 winston.initRequestLogger(app);
 
-app.use('/', index);
-app.use('/use', user)
+// app.use('/', index);
+// app.use('/use', user)
+app.use(rest.restify())
+app.use(controller())
 
 
-winston.initErrorLogger(app);
 
 
 
@@ -61,7 +63,8 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   res.status(err.status || 500);
-  res.render('error');
+  // res.render('error');
+  res.status(err.status).json({code: err.status, message: res.locals.message})
 });
 
 module.exports = app;

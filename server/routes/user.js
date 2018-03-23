@@ -1,18 +1,15 @@
 var express = require("express");
 var useService = require('../services/userService');
+var logger = require('../util/logger')
 const router = express.Router();
 
-router.get("/", function (req, res) {
-    useService.findAll().then((result) => {
-        console.log(result)
-        res.json(result);
-    })
+router.get("/", async function (req, res) {
+    let result = await useService.findAll();
+    // logger.error(result)
+    res.json(result);  
 });
-router.post('/api/postTest/', function (req, res) {
-    useService.create(req.body).then((result) => {
-        res.send({ id: result.dataValues.id })
-    }).catch(err=>{
-        console.log(err)
-    })
+router.post('/api/postTest/', async function (req, res) {
+    let result = await useService.create(req.body)   
+    res.send({ id: result.dataValues.id })  
 })
 module.exports = router;

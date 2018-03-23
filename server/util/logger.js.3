@@ -1,0 +1,84 @@
+/*
+ * @Author: jianxi_lin 
+ * 日志模块
+ * @Date: 2018-03-22 13:50:55 
+ * @Last Modified by: jianxi_lin
+ * @Last Modified time: 2018-03-23 14:14:50
+ */
+var winston = require('winston');
+var expressWinston = require('express-winston');
+var morgan = require('morgan');
+var path = require('path');
+var fileStreamRotator = require('file-stream-rotator');
+
+
+// 日志打印位置
+const LOGS_DIR = path.join(__dirname, '../logs');
+const TSFORMAT = () => (new Date()).toLocaleTimeString();
+
+// 公共配置选项
+const LOGGER_COMMON_CONFIG = {
+    meta: true,
+    msg: "HTTP {{req.method}} {{req.url}}",
+    expressFormat: true,
+    colorize: true,
+    ignoreRoute: function (req, res) { return false; }
+};
+expressWinston.requestWhitelist.push('body');
+let logger = expressWinston.logger({
+    transports: [
+        // 控制台
+        new (winston.transports.Console)({
+            json: true,
+            colorize: true
+        }),
+        // 文件
+        new winston.transports.File({
+            level: 'info',                                   
+            filename: LOGS_DIR + '/access.log.txt',                                                 
+        })                             
+    ],
+   LOGGER_COMMON_CONFIG
+});
+// 提供 morgan 使用
+logger.stream = {
+    write: function(message) {
+        // logger.info(message.trim()); // trim 去除多余换行
+    }
+};
+
+var Logger = {
+    /**
+     * 在路由之前记录
+     * @param {*} app 
+     */
+    initRequestLogger(app) {
+        app.use(morgan('combined', {
+            'stream': logger.stream,
+            // OPTIONS 类型请求不记录在日志中
+            'skip': (req, res) => req.method === 'OPTIONS'
+        }))        
+    },
+    /**
+     * 在路由之后由意义
+     * 错误日志记录
+     * @param {} app 
+     */
+    initErrorLogger(app) {
+        app.use(expressWinston.logger({
+            transports: [
+                new winston.transports.Console({
+                    json: true,
+                    colorize: true
+                }),
+                // 文件
+                new winston.transports.File({
+                    level: 'error',
+                    filename: LOGS_DIR + '/error.log.txt'                    
+                })
+            ],
+            LOGGER_COMMON_CONFIG
+        }))
+    }
+}
+module.exports = Logger;
