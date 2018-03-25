@@ -7,19 +7,14 @@ module.exports = {
             products: userService.findAll()
         });
     },
-
-    // 'POST /api/products': async (ctx, next) => {
-    //     var p = products.createProduct(ctx.request.body.name, ctx.request.body.manufacturer, parseFloat(ctx.request.body.price));
-    //     ctx.rest(p);
-    // },
-
-    // 'DELETE /api/products/:id': async (ctx, next) => {
-    //     console.log(`delete product ${ctx.params.id}...`);
-    //     var p = products.deleteProduct(ctx.params.id);
-    //     if (p) {
-    //         ctx.rest(p);
-    //     } else {
-    //         throw new APIError('product:not_found', 'product not found by id.');
-    //     }
-    // }
+    'POST /api/insertUser':  async (req, res, next) => {
+        res.rest({
+            products: userService.create(req.body)
+        })
+    },
+    'DELETE /api/deleteUser/:id' async (req, res, next) => {
+        res.rest({
+            products: userService.delete(req.pamams.id)
+        })
+    }
 };

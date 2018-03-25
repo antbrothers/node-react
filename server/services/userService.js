@@ -18,6 +18,12 @@ var userObj = {
      */
     create(data) {
         return User.create(data)
+    },
+    /**
+     * 删除用户
+     */
+    delete(id) {
+        return User.delete({})
     }
 
 }

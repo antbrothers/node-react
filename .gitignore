@@ -1,5 +1,4 @@
 server/node_modules
 client/node_modules
 .vscode
-.vscode/settings.json
-.vscode/launch.json
+.idea

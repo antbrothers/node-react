@@ -9,10 +9,9 @@ module.exports = {
         this.code = code || 'internal: unknown_error';
         this.message = message || '';
     },
-    restify: (pathPrefix) => {
-        pathPrefix = pathPrefix || '/api/';
-        return async (req,res, next) => {           
-            if (req.url.substring(0, 5) === '/api/') {               
+    restify: () => {       
+        return async (req, res, next) => {       
+            if (req.url.substring(0, 5) === '/api/') {                
                 res.rest = (data) => {
                     res.set({
                         'Content-Type': 'application/json;charset=utf-8',                      
@@ -23,16 +22,16 @@ module.exports = {
                         res.status(100).json({code: 200, message: error, count: 0, data: []})
                     })                    
                 }
-                try {
+                try {                  
                     await next();
-                } catch (e) {
-                    console.log('Process API error ...'  + e);
-                    // res.response.status = 400;
-                    // res.response.type = 'application/json';
-                    // res.response.body = {
-                    //     code: e.code || 'internal:unknown_error',
-                    //     message: e.message || ''
-                    // };
+                } catch (e) {                   
+                    res.set({
+                        'Content-Type': 'application/json;charset=utf-8',   
+                    })
+                    res.status(400).json({
+                        code: e.code,
+                        message: e.message
+                    })                   
                 }
             } else {
                 await next();
