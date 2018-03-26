@@ -21,3 +21,8 @@
 2018-03-26T05:50:09.852Z - info: ::ffff:127.0.0.1 - - [26/Mar/2018:05:50:09 +0000] "GET /api/products HTTP/1.1" 200 3816 "-" "node-superagent/3.8.2"
 2018-03-26T05:50:53.023Z - info: ::ffff:127.0.0.1 - - [26/Mar/2018:05:50:53 +0000] "GET /api/products HTTP/1.1" 200 3816 "-" "node-superagent/3.8.2"
 2018-03-26T05:51:28.825Z - info: ::ffff:127.0.0.1 - - [26/Mar/2018:05:51:28 +0000] "GET /api/products HTTP/1.1" 200 3816 "-" "node-superagent/3.8.2"
+2018-03-26T05:59:04.815Z - info: ::ffff:127.0.0.1 - - [26/Mar/2018:05:59:04 +0000] "GET /api/products HTTP/1.1" 200 3816 "-" "node-superagent/3.8.2"
+2018-03-26T06:16:28.814Z - info: ::1 - - [26/Mar/2018:06:16:28 +0000] "GET / HTTP/1.1" 404 34 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36"
+2018-03-26T06:16:29.002Z - info: ::1 - - [26/Mar/2018:06:16:29 +0000] "GET /favicon.ico HTTP/1.1" 404 34 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36"
+2018-03-26T06:16:35.692Z - info: ::1 - - [26/Mar/2018:06:16:35 +0000] "GET /api/products HTTP/1.1" 200 3816 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36"
+2018-03-26T09:21:22.985Z - info: ::1 - - [26/Mar/2018:09:21:22 +0000] "GET /api/products HTTP/1.1" 200 3816 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36"

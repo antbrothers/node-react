@@ -13,7 +13,8 @@ const publicConfig = {
             test: /\.css$/,
             use: ExtractTextPlugin.extract({
                 fallback: "style-loader",
-                use: ["css-loader?modules&localIdentName=[local]-[hash:base64:5]", "postcss-loader"]
+               // use: ["css-loader?modules&localIdentName=[local]-[hash:base64:5]", "postcss-loader"] // css 按模块加载
+               use: ["css-loader", "postcss-loader"]
             })
         }]
     },
