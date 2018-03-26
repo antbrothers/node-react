@@ -1,0 +1,41 @@
+#login-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;   
+    padding: 40px;
+    font-size: 30px; /*!px*/
+}
+.login-head {
+    display: flex;    
+}
+.login-head .head-comm {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    font-weight: bold;
+    align-items: center;
+}
+.login-head .head-img {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.login-head .head-img .head-use-img {
+    width: 100px;
+    border-radius: 50%;    
+}
+.inp-comm {
+    margin-top: 40px;
+}
+.inp-comm .am-list-item.am-input-item{
+    padding-left: 0;
+}
+.inp-comm input {
+    font-size: 26px; /*!px*/
+}
+/* @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx){
+    background-color: white;
+} */
