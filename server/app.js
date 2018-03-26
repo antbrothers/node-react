@@ -2,7 +2,7 @@
  * @Author: jianxi_lin  
  * @Date: 2018-03-21 09:22:02 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-03-23 17:40:20
+ * @Last Modified time: 2018-03-26 11:02:27
  */
 var express = require('express');
 var path = require('path');
@@ -14,9 +14,6 @@ var ejs = require('ejs');
 var winston = require('./util/logger');
 var rest = require('./middleware/rest')
 var controller = require('./controller')
-// var index = require('./routes/index');
-// var user = require('./routes/user')
-
 var app = express();
 
 
@@ -39,9 +36,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 初始化日志模块
 winston.initRequestLogger(app);
-
-// app.use('/', index);
-// app.use('/use', user)
 app.use(rest.restify())
 app.use(controller())
 

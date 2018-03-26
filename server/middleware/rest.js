@@ -2,7 +2,7 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-23 14:55:34 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-03-23 17:46:33
+ * @Last Modified time: 2018-03-26 10:18:47
  */
 module.exports = {
     APIError: function(code, message) {
@@ -17,10 +17,10 @@ module.exports = {
                         'Content-Type': 'application/json;charset=utf-8',                      
                     })
                      data.products.then(result => {
-                        res.status(200).json({code: 200, message: '请求成功', count: 10, data: result})
+                        res.status(200).json({code: 200, message: '请求成功', data: result})
                      }).catch(function(error){
-                        res.status(100).json({code: 200, message: error, count: 0, data: []})
-                    })                    
+                        res.status(100).json({code: 200, message: error, data: []})
+                    })                
                 }
                 try {                  
                     await next();

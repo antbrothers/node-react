@@ -12,9 +12,14 @@ module.exports = {
             products: userService.create(req.body)
         })
     },
-    'DELETE /api/deleteUser/:id' async (req, res, next) => {
+    'DELETE /api/deleteUser/:id': async (req, res, next) => {
         res.rest({
-            products: userService.delete(req.pamams.id)
+            products: userService.delete(req.params.id)
+        })
+    },
+    'PUT /api/putUser': async(req, res, next) => {
+        res.rest({
+            products: userService.update()
         })
     }
 };

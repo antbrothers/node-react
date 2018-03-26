@@ -23,7 +23,26 @@ var userObj = {
      * 删除用户
      */
     delete(id) {
-        return User.delete({})
+        return User.destroy({
+            where: {
+                id: id
+            }
+        })
+    },
+    /**
+     * 更新记录
+     */
+    update(data) {
+        return User.update(
+            {
+                userName: 121,
+                firstName: 'frfr'
+            },
+            {
+                where: {
+                    id: '4c61eab8-c694-48a2-8671-a35443d854d8'
+                }
+            })
     }
 
 }

@@ -3,7 +3,7 @@
  * @Dec 向路由中注册控制器
  * @Date: 2018-03-23 15:07:19 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-03-23 15:54:45
+ * @Last Modified time: 2018-03-26 09:51:00
  */
 
  const fs = require('fs');
@@ -22,7 +22,7 @@
             router.put(path, mapping[url]);            
         } else if (url.startsWith('DELETE ')) {
             var path = url.substring(7);
-            router.del(path, mapping[url]);           
+            router.delete(path, mapping[url]);           
         } else {
             console.log(`invalid URL: ${url}`);
         }
