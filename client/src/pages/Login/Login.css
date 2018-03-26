@@ -5,7 +5,7 @@
     right: 0;
     bottom: 0;   
     padding: 40px;
-    font-size: 30px; /*!px*/
+    font-size: 34px; /*!px*/
 }
 .login-head {
     display: flex;    
@@ -36,6 +36,10 @@
 .inp-comm input {
     font-size: 26px; /*!px*/
 }
-/* @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx){
-    background-color: white;
-} */
+.btn-enter {
+    margin-top: 80px;
+}
+.btn-enter .am-button-primary{
+    border-radius: 5px;
+    background-color:#64cc77;
+}
