@@ -2,7 +2,7 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-23 14:55:34 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-03-26 10:18:47
+ * @Last Modified time: 2018-03-27 11:26:30
  */
 module.exports = {
     APIError: function(code, message) {
@@ -22,13 +22,13 @@ module.exports = {
                         res.status(100).json({code: 200, message: error, data: []})
                     })                
                 }
-                try {                  
+                try {
                     await next();
                 } catch (e) {                   
                     res.set({
                         'Content-Type': 'application/json;charset=utf-8',   
                     })
-                    res.status(400).json({
+                    res.status(e.code).json({
                         code: e.code,
                         message: e.message
                     })                   

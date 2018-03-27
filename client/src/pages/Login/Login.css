@@ -39,7 +39,9 @@
 .btn-enter {
     margin-top: 80px;
 }
-.btn-enter .am-button-primary{
+.btn-enter .btn{
     border-radius: 5px;
     background-color:#64cc77;
+    color: white;
+    text-decoration: none;
 }

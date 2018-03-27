@@ -5,23 +5,23 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             defaultValue: DataTypes.UUIDV4
         },
-        userName: {
-            type: DataTypes.STRING,
-            allowNull: false           
-        },
+        userName: DataTypes.STRING,
         firstName: DataTypes.STRING,
         lastName: DataTypes.STRING,
+        passWord: DataTypes.STRING,
         status: {
             type: DataTypes.ENUM('active', 'inactive'),
             defaultValue: 'inactive',
             allowNull: false
         }
-    }, {
+    },
+        {
             classMethods: {
-                associate: function(models) {
-                    User.hasMany(models.Post, { foreignKey: 'userId'});
+                associate: function (models) {
+                    User.hasMany(models.Post, { foreignKey: 'userId' });
                 }
             }
-      });
-      return User;
+        }
+    );
+    return User;
 }

@@ -30,7 +30,9 @@ const devConfig = {
         historyApiFallback: true,
         host: '0.0.0.0',
         proxy: {
-            "/api/*": "http://localhost:8090/$1"
+            "/api/*": "http://localhost:3000",
+            changeOrigin: true,
+            secure: false
         }
     }
 };
