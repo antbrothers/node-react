@@ -12,8 +12,8 @@ class Login extends Component {
     }
     handleChange = (name, value) => {
         var newState = {};
-        newState[name] =  value;
-        this.setState(newState)            
+        newState[name] = value;
+        this.setState(newState)
     }
     render() {
         return (
@@ -29,7 +29,7 @@ class Login extends Component {
                     <InputItem clear value={this.state.passWord} placeholder="请输入密码" onChange={this.handleChange.bind(this, 'passWord')}></InputItem>
                     <WingBlank className="btn-enter">
                         <Button className="btn" onClick={() => this.props.login(this.state)}>进入</Button><WhiteSpace />
-                    </WingBlank>
+                    </WingBlank>                    
                 </div>
                 {
                     this.props.loginResult

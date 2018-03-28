@@ -11,5 +11,11 @@ module.exports = {
                 userName: userName
             }
         })
-    }
+    },
+  /**
+   * 用户注册
+   */
+  register(data) {
+      return User.create(data)
+  }
 }
