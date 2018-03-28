@@ -16,11 +16,16 @@ module.exports = {
                     res.set({
                         'Content-Type': 'application/json;charset=utf-8',                      
                     })
-                     data.products.then(result => {
-                        res.status(200).json({code: 200, message: '请求成功', data: result})
-                     }).catch(function(error){
-                        res.status(100).json({code: 200, message: error, data: []})
-                    })                
+                    if (typeof data.products !== "Object") {
+                        data.products.then(result => {
+                            res.status(200).json({code: 200, message: '请求成功', data: result})
+                         }).catch(function(error){
+                            res.status(100).json({code: 200, message: error, data: []})
+                        })  
+                    } else {
+                        res.status(200).json(data.products)
+                    }
+                                   
                 }
                 try {
                     await next();

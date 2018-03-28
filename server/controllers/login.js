@@ -14,7 +14,9 @@ module.exports ={
         }  else {
             res.rest({
                 products: {
-                    
+                    code: 100,
+                    message: '密码不正确',
+                    data: []
                 }
             })
         }     
