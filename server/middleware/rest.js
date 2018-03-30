@@ -2,7 +2,7 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-23 14:55:34 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-03-27 11:26:30
+ * @Last Modified time: 2018-03-30 10:47:43
  */
 module.exports = {
     APIError: function(code, message) {
@@ -16,7 +16,7 @@ module.exports = {
                     res.set({
                         'Content-Type': 'application/json;charset=utf-8',                      
                     })
-                    if (typeof data.products !== "Object") {
+                    if (typeof data.products !== "object") {
                         data.products.then(result => {
                             res.status(200).json({code: 200, message: '请求成功', data: result})
                          }).catch(function(error){

@@ -7,7 +7,7 @@ let initState = {
 }
 
 export default function reducer(state = initState, action) {
-    switch (action.type) {        
+    switch (action.type) {                
         case LOGIN_SUCCESS:
             return {
                 code: action.result.data.code,
