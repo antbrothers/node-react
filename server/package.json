@@ -15,6 +15,7 @@
     "express": "~4.15.5",
     "express-winston": "^2.5.0",
     "file-stream-rotator": "^0.2.1",
+    "http-proxy-middleware": "^0.18.0",
     "moment": "^2.21.0",
     "morgan": "^1.9.0",
     "mysql": "^2.15.0",
