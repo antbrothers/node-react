@@ -2,7 +2,7 @@
  * @Author: jianxi_lin  
  * @Date: 2018-03-21 09:22:02 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-02 15:33:20
+ * @Last Modified time: 2018-04-02 15:44:12
  */
 var express = require('express');
 var path = require('path');
@@ -36,9 +36,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// 添加接口代理
 var proxyTable = config.proxyTable;
-Object.keys(proxyTable).forEach(function(context) {
-  debugger;
+Object.keys(proxyTable).forEach(function(context) { 
   var options = proxyTable[context];
   var Proxy = proxy(options);
   app.use(context, Proxy)

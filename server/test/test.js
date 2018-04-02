@@ -25,5 +25,11 @@ describe('#test express app', () => {
         //.expect(200, 'post 提交api测试')
         .expect(200)
     })
+
+    it ('#test Get /external', async () => {
+      let result = await request(server)
+      .get('/external')
+      .expect(200)
+    })
   })
 })

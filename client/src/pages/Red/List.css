@@ -1,0 +1,19 @@
+body {
+    background-color: white;
+}
+.table-main {   
+}
+.table {
+    width: 100%;
+    /* border: 1px solid #e4e4e4; /*!no*/  
+}
+.table tbody tr {
+    height: 80px;   
+}
+th {
+   
+}
+td, th {
+    text-align: center;
+    border: 1px solid #e4e4e4; /*!no*/  
+}

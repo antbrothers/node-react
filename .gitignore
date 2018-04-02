@@ -2,3 +2,4 @@ server/node_modules
 client/node_modules
 .vscode
 .idea
+server/logs

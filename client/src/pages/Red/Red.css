@@ -1,0 +1,18 @@
+body{
+    background-color: white;
+}
+.am-navbar {
+    background-color:  #64cc77;
+}
+.btn {
+    border-radius: 5px;
+    background-color:#64cc77;
+    color: white;
+    text-decoration: none;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.btn::before {
+    border: none;
+}

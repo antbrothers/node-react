@@ -7,6 +7,7 @@ import Test from 'bundle-loader?lazy&name=home!pages/Home/Home'
 import Counter from 'bundle-loader?lazy&name=counter!pages/Counter/Counter'
 import Login from 'bundle-loader?lazy&name=login!pages/Login/Login'
 import Red from 'bundle-loader?lazy&name=red!pages/Red/Red'
+import RedList from 'bundle-loader?lazy&name=redList!pages/Red/List'
 
 const createComponent = (component) => (props) => (
     <Bundle load={component}>
@@ -23,6 +24,7 @@ export default () => (
             <Route  path="/test" component={createComponent(Test)} />
             <Route path="/counter" component={createComponent(Counter)} />
             <Route path="/red" component={createComponent(Red)} />
+            <Route path="/list" component={createComponent(RedList)} />
         </Switch>
     </div>
 )
