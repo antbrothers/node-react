@@ -30,15 +30,21 @@ const devConfig = {
         historyApiFallback: true,
         host: '0.0.0.0',
         proxy: {
-            "/api/*": "http://localhost:3000",
-            changeOrigin: true,
-            secure: false
+            "/api/*": {
+                target: "http://localhost:3000",
+                changeOrigin: true              
+            },
+            "/external/*": {
+                target: "http://localhost:3000",
+                changeOrigin: true               
+            }          
         }
+
     }
 };
 
 module.exports = merge({
-    customizeArray(a, b, key) {       
+    customizeArray(a, b, key) {
         if (key === 'entry.app') {
             return b;
         }

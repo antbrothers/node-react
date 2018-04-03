@@ -2,10 +2,12 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-30 10:31:01 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-02 16:51:09
+ * @Last Modified time: 2018-04-03 17:07:24
  */
 import React, { Component } from 'react'
 import { NavBar, Icon, List, TextareaItem, Button } from 'antd-mobile'
+import { red } from '../../redux/actions/red'
+import { connect } from 'react-redux'
 
 require('./Red.css')
 
@@ -38,9 +40,22 @@ class Red extends Component {
           onChange={this.handChange.bind(this, 'value')} rows={5} />
         </List>
 
-        <Button className="btn">提交</Button>
+        <Button className="btn" onClick={() => this.props.getRed()}>提交</Button>
       </div>
     )
   }
 }
-export default Red
+const mapStateToProps = (state) => {
+  return {
+    getRedState: state.red
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getRed: () => {
+      dispatch(red())
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Red)

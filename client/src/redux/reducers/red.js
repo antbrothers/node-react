@@ -10,13 +10,13 @@ export default function reducer(state = initState, action) {
         case RED_SUCCESS:
             return {
                 code: action.result.data.code,
-                message: action.result.data.message,
+                message: action.result.data.msg,
                 data: action.result.data.data
             };
         case RED_FAIL: {
             return {
                 code: action.result.data.code,
-                message: action.result.data.message,
+                message: action.result.data.msg,
                 data: action.result.data.data
             }
         };
