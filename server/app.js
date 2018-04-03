@@ -2,7 +2,7 @@
  * @Author: jianxi_lin  
  * @Date: 2018-03-21 09:22:02 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-02 15:44:12
+ * @Last Modified time: 2018-04-03 10:52:48
  */
 var express = require('express');
 var path = require('path');
@@ -26,7 +26,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', ejs.__express)
 app.set('view engine', 'html');
 
-
+// 添加接口代理
+var proxyTable = config.proxyTable;
+Object.keys(proxyTable).forEach(function(context) { 
+  var options = proxyTable[context];
+  var Proxy = proxy(options);
+  app.use(context, Proxy)
+})
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -36,13 +42,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 添加接口代理
-var proxyTable = config.proxyTable;
-Object.keys(proxyTable).forEach(function(context) { 
-  var options = proxyTable[context];
-  var Proxy = proxy(options);
-  app.use(context, Proxy)
-})
 
 // 初始化日志模块
 winston.initRequestLogger(app);
