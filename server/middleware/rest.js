@@ -2,7 +2,7 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-23 14:55:34 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-03-30 10:47:43
+ * @Last Modified time: 2018-04-04 09:34:15
  */
 module.exports = {
     APIError: function(code, message) {
@@ -16,16 +16,20 @@ module.exports = {
                     res.set({
                         'Content-Type': 'application/json;charset=utf-8',                      
                     })
-                    if (typeof data.products !== "object") {
-                        data.products.then(result => {
-                            res.status(200).json({code: 200, message: '请求成功', data: result})
-                         }).catch(function(error){
-                            res.status(100).json({code: 200, message: error, data: []})
-                        })  
-                    } else {
-                        res.status(200).json(data.products)
-                    }
-                                   
+                    // if (typeof data.products !== "object") {
+                    //     data.products.then(result => {
+                    //         res.status(200).json({code: 200, message: '请求成功', data: result})
+                    //      }).catch(function(error){
+                    //         res.status(100).json({code: 200, message: error, data: []})
+                    //     })  
+                    // } else {
+                    //     res.status(200).json(data.products)
+                    // }
+                    data.products.then(result => {
+                        res.status(200).json({code: 200, message: '请求成功', data: result})
+                     }).catch(function(error){
+                        res.status(100).json({code: 200, message: error, data: []})
+                    })                                     
                 }
                 try {
                     await next();

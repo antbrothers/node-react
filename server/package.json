@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha --timeout 100000" 
+    "test": "mocha --timeout 100000"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
+    "crypto-js": "^3.1.9-1",
     "dateformat": "^3.0.3",
     "debug": "~2.6.9",
     "ejs": "^2.5.7",
@@ -20,6 +22,7 @@
     "morgan": "^1.9.0",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
+    "querystring": "^0.2.0",
     "sequelize": "^4.37.3",
     "serve-favicon": "~2.4.5",
     "stack-trace": "0.0.10",

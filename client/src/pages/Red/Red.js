@@ -2,7 +2,7 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-30 10:31:01 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-03 17:07:24
+ * @Last Modified time: 2018-04-04 09:10:56
  */
 import React, { Component } from 'react'
 import { NavBar, Icon, List, TextareaItem, Button } from 'antd-mobile'
@@ -36,7 +36,7 @@ class Red extends Component {
         >NavBar</NavBar>
 
         <List>
-          <TextareaItem placeholder="请输入连接地址" className="link-adrr" value={this.state.value}
+          <TextareaItem placeholder="" className="link-adrr" value={this.state.value}
           onChange={this.handChange.bind(this, 'value')} rows={5} />
         </List>
 

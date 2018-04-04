@@ -2,7 +2,7 @@
  * @Author: jianxi_lin  
  * @Date: 2018-03-21 09:22:02 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-03 10:52:48
+ * @Last Modified time: 2018-04-04 09:38:26
  */
 var express = require('express');
 var path = require('path');
@@ -48,7 +48,7 @@ winston.initRequestLogger(app);
 app.use(rest.restify())
 app.use(controller())
 
-
+// winston.initErrorLogger(app);
 
 
 
