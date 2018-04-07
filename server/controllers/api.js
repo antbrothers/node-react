@@ -1,6 +1,5 @@
 const APIError = require('../middleware/rest').APIError;
 var userService = require('../services/userService');
-
 module.exports = {
     'GET /api/products': async (req, res, next) => {
         res.rest({

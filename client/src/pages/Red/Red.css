@@ -1,6 +1,10 @@
 body{
     background-color: white;
 }
+#red-main {
+    width: 750px;
+    margin: 0 auto;
+}
 .am-navbar {
     background-color:  #64cc77;
 }
