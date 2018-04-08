@@ -2,10 +2,10 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-30 10:31:01 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-04 09:10:56
+ * @Last Modified time: 2018-04-08 17:48:54
  */
 import React, { Component } from 'react'
-import { NavBar, Icon, List, TextareaItem, Button } from 'antd-mobile'
+import { NoticeBar, WhiteSpace, Icon, NavBar, Tabs, Badge, InputItem, TextareaItem , Button, Toast, WingBlank } from 'antd-mobile'
 import { red } from '../../redux/actions/red'
 import { connect } from 'react-redux'
 
@@ -16,7 +16,8 @@ class Red extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: ''
+      mobile: '14782543977',
+        url: 'https://activity.waimai.meituan.com/coupon/sharechannel/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=2B6F60B4043F496EBE3B8EC647DF2E7D&utm_source=appshare&utm_fromapp=wx'
     }
   }
   handChange(name, value) {
@@ -24,7 +25,35 @@ class Red extends Component {
     newState[name] = value
     this.setState(newState)
   }
+
+  componentDidUpdate() {
+    if (this.props.getRedState.code == 4002 || this.props.getRedState.code == 4201 || this.props.getRedState.code == 1000) {
+      Toast.info(this.props.getRedState.message, 2, null, false);
+    }   
+  }  
   render() {
+
+    const tabs = [
+      {
+        title: <Badge>规则</Badge>
+      },
+      {
+        title: <Badge>领取</Badge>
+      },
+      {
+        title: <Badge dot>贡献</Badge>
+      }
+
+    ]
+
+    var tr = '' ;
+    if (JSON.stringify(this.props.getRedState.data) == '{}') {
+       tr = <tr></tr>;
+    } else {
+      this.props.getRedState.data.map(function(item) {
+        tr = <tr><td>{item.nick_name}</td><td>{item.coupon_price}</td><td>{'' + item.bestLuck}</td></tr>
+      })      
+    }
     return (
       <div id="red-main">
         <NavBar
@@ -35,12 +64,63 @@ class Red extends Component {
           }}
         >NavBar</NavBar>
 
-        <List>
-          <TextareaItem placeholder="" className="link-adrr" value={this.state.value}
-          onChange={this.handChange.bind(this, 'value')} rows={5} />
-        </List>
-
-        <Button className="btn" onClick={() => this.props.getRed()}>提交</Button>
+        <WhiteSpace size="lg" />
+        <div className="tip-one tip-comm">
+          ·加媒指责中国绕开WTO报复美国 中方回应
+          ·未来三天全国大部地区无明显降水 气温逐步回升
+          ·纽约特朗普大楼50层起火 特朗普立刻发推回应
+          ·巴西前总统卢拉表示将入狱服刑 坚称“无罪”
+          </div>
+        <WhiteSpace size="lg"></WhiteSpace>
+        <div className="tip-two tip-comm">
+          ·加媒指责中国绕开WTO报复美国 中方回应
+          ·未来三天全国大部地区无明显降水 气温逐步回升
+          </div>
+        <WhiteSpace size="lg"></WhiteSpace>
+        <Tabs tabs={tabs}
+          initialPage={1}
+          onChange={(tab, index) => { console.log('onChange', index, tab); }}
+          onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
+        >
+          <div className="tab-content">
+            <ul>
+              <li>1. 次数不足以领取大红包，胡乱提交链接者，不仅领不到大红包还可能会产生不必要的次数消耗。</li>
+              <WhiteSpace size="lg"></WhiteSpace>
+              <li>2. 提交 “最大红包已被领取” 的链接，也可能产生不必要的次数消耗，所以领取前，请确认最大红包还未被人领。</li>
+              <WhiteSpace size="lg"></WhiteSpace>
+              <li>3. 要领最大红包的手机号，切记不要提前打开红包链接，会领到小红包，无法再领最大，而且会浪费你的次数。</li>
+              <WhiteSpace size="lg"></WhiteSpace>
+              <li>4. 美团限制每个手机号一天只能领 5 个红包，请确保你填写的手机号还可以领，否则会浪费你的次数。</li>
+              <WhiteSpace size="lg"></WhiteSpace>
+              <li>5. 特别注意，无法领取差一个就是大红包的情况。例如：第七个是最大红包，已经有六个人领了，此时不要使用我们的领取功能。</li>
+            </ul>
+          </div>
+          <div className="tab-content">
+          <WhiteSpace size="lg"></WhiteSpace>
+          <InputItem placeholder="请输入手机号码" value={this.state.mobile} clear className="mobile" onChange= {this.handChange.bind(this, 'mobile')}></InputItem>
+          <WhiteSpace size="lg"></WhiteSpace>
+          <TextareaItem placeholder="请贴入地址" value={this.state.url} onChange={this.handChange.bind(this, 'url')} className="linkAddr" rows={5}></TextareaItem>
+          <WhiteSpace size="lg"></WhiteSpace>
+          <Button className="btn" onClick={() => this.props.getRed(this.state)}>OK</Button>
+          <WhiteSpace size="lg"></WhiteSpace>
+          <table className="table">
+            <tbody>
+              <tr>
+                <th>昵称</th>
+                <th>金额</th>
+                <th>大红包</th>
+              </tr>
+              {
+                tr
+              }            
+            </tbody>
+          </table>
+      </div>
+          <div className="tab-content">
+          <WhiteSpace size="lg"></WhiteSpace>
+            Content of third tab
+      </div>
+        </Tabs>
       </div>
     )
   }
@@ -53,8 +133,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getRed: () => {
-      dispatch(red())
+    getRed: (userInfo) => {
+      dispatch(red(userInfo))
     }
   }
 }

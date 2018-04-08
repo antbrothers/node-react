@@ -5,15 +5,10 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             defaultValue: DataTypes.UUIDV4
         },
-        userName: DataTypes.STRING,
-        firstName: DataTypes.STRING,
-        lastName: DataTypes.STRING,
+        mobile: DataTypes.STRING,
+        userName: DataTypes.STRING,      
         passWord: DataTypes.STRING,
-        status: {
-            type: DataTypes.ENUM('active', 'inactive'),
-            defaultValue: 'inactive',
-            allowNull: false
-        }
+        wxCookie: DataTypes.STRING        
     },
         {
             classMethods: {

@@ -9,8 +9,21 @@ var userObj = {
     /**
      * 查询所有
      */
-    findAll(limit = 50, offset = 0) {
+    findAll() {
         return User.findAll()
+    },
+   
+    /**
+     * 根据mobile 查找用户信息
+     * 
+     * @param {any} mobile 
+     */
+    findOneByMobile(mobile) {
+        return User.findOne({
+            where: {
+                mobile: mobile
+            }
+        })
     },
     /**
      * 创建表单
@@ -44,6 +57,7 @@ var userObj = {
                 }
             })
     }
+
 
 }
 module.exports = userObj;
