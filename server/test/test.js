@@ -18,19 +18,18 @@ describe('#test express app', () => {
     //     .expect(200, '接口测试查看返回结果');
     // })
 
-    // it ('#test Post /api/insertUser', async () => {
-    //   let result = await request(server)
-    //     .post('/api/insertUser') 
-    //     .send({
-    //       userName: 'l',
-    //       firstName: '2',
-    //       lastName: '2',
-    //       passWord: '5',
-    //       status: '1'
-    //     })
-    //     //.expect(200, 'post 提交api测试')
-    //     .expect(200)
-    // })
+    it ('#test Post /api/insertUser', async () => {
+      let result = await request(server)
+        .post('/api/insertUser') 
+        .send({
+          userName: 'linjianxi',                
+          passWord: '14782543977',
+          mobile: '14782543977',
+                   
+        })
+        //.expect(200, 'post 提交api测试')
+        .expect(200)
+    })
 
     // it('#test POST /external', (done) => {
     //   request(server)
@@ -71,13 +70,15 @@ describe('#test express app', () => {
     //     mobile: '14782543977'
     //   })      
     // })
-    it ('#test honbao', function() {
-      return def({
-        url: 'https://activity.waimai.meituan.com/coupon/sharechannelredirect/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=477F96D5BB4C42D38E9CCDD4DA3B2AE0&state=123&uiId=0&code=003MxfCd1vo7Fr0pPJzd1cMmCd1MxfCW',
-        mobile: '14782543977',
-        cookie: 'ewxinfo="BCB33F13BA1CEFAF4F0F1F474BEA3266%2F8r9C2SVlqtW%2BZeVcyUoV%2B1AsYhSUYKfC43EpbqBzO41uuth5ClQCUJtTmq3dtrCr403DYjqZ5jI8ByqQgFZ4V5cn%2ByV5ejHdV9JFEWazz4NMmsYxVqAn3hQOkCpCcgLkXFTGcPGmIL6n98%2FFnUQR%2FsNGP8AnCXJSnCBR2AWmNxBuqkwGMky6Fjz0iW2U5wl14bzvQxyvMFzuNPiEr99F0ujMxjQDPYGN8ceTHhNYVwCgA9XdhQ13J3gEpWBkTZUEiV%2B9EDK6ZTTuXQmsG6dIuZjmL6tGFXivKigcjFsUWw%3D"'
-      })
-    })
+
+
+    // it ('#test honbao', function() {
+    //   return def({
+    //     url: 'https://activity.waimai.meituan.com/coupon/sharechannelredirect/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=477F96D5BB4C42D38E9CCDD4DA3B2AE0&state=123&uiId=0&code=003MxfCd1vo7Fr0pPJzd1cMmCd1MxfCW',
+    //     mobile: '14782543977',
+    //     cookie: 'ewxinfo="BCB33F13BA1CEFAF4F0F1F474BEA3266%2F8r9C2SVlqtW%2BZeVcyUoV%2B1AsYhSUYKfC43EpbqBzO41uuth5ClQCUJtTmq3dtrCr403DYjqZ5jI8ByqQgFZ4V5cn%2ByV5ejHdV9JFEWazz4NMmsYxVqAn3hQOkCpCcgLkXFTGcPGmIL6n98%2FFnUQR%2FsNGP8AnCXJSnCBR2AWmNxBuqkwGMky6Fjz0iW2U5wl14bzvQxyvMFzuNPiEr99F0ujMxjQDPYGN8ceTHhNYVwCgA9XdhQ13J3gEpWBkTZUEiV%2B9EDK6ZTTuXQmsG6dIuZjmL6tGFXivKigcjFsUWw%3D"'
+    //   })
+    // })
   })
 })
 

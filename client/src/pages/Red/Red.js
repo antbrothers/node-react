@@ -5,7 +5,7 @@
  * @Last Modified time: 2018-04-08 17:48:54
  */
 import React, { Component } from 'react'
-import { NoticeBar, WhiteSpace, Icon, NavBar, Tabs, Badge, InputItem, TextareaItem , Button, Toast, WingBlank } from 'antd-mobile'
+import { NoticeBar, WhiteSpace, Icon, NavBar, Tabs, Badge, InputItem, TextareaItem, Button, Toast, WingBlank } from 'antd-mobile'
 import { red } from '../../redux/actions/red'
 import { connect } from 'react-redux'
 
@@ -17,7 +17,7 @@ class Red extends Component {
     super(props)
     this.state = {
       mobile: '14782543977',
-        url: 'https://activity.waimai.meituan.com/coupon/sharechannel/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=2B6F60B4043F496EBE3B8EC647DF2E7D&utm_source=appshare&utm_fromapp=wx'
+      url: 'https://activity.waimai.meituan.com/coupon/sharechannel/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=2B6F60B4043F496EBE3B8EC647DF2E7D&utm_source=appshare&utm_fromapp=wx'
     }
   }
   handChange(name, value) {
@@ -29,8 +29,19 @@ class Red extends Component {
   componentDidUpdate() {
     if (this.props.getRedState.code == 4002 || this.props.getRedState.code == 4201 || this.props.getRedState.code == 1000) {
       Toast.info(this.props.getRedState.message, 2, null, false);
-    }   
-  }  
+    }
+  }
+  cows() {
+    var html = ''
+    if (JSON.stringify(this.props.getRedState.data) == '{}') {
+      html += `<tr></tr>`
+    } else {
+      this.props.getRedState.data.map(function (item, index) {
+        html += `<tr key=${index}><td>${item.nick_name}</td><td>${item.coupon_price}</td><td>${item.bestLuck}</td></tr> `        
+      })
+    }
+    return html
+  }
   render() {
 
     const tabs = [
@@ -45,15 +56,9 @@ class Red extends Component {
       }
 
     ]
-
-    var tr = '' ;
-    if (JSON.stringify(this.props.getRedState.data) == '{}') {
-       tr = <tr></tr>;
-    } else {
-      this.props.getRedState.data.map(function(item) {
-        tr = <tr><td>{item.nick_name}</td><td>{item.coupon_price}</td><td>{'' + item.bestLuck}</td></tr>
-      })      
-    }
+    var createMarkup = function() { 
+      return {__html: this.cows()}
+    }.bind(this);
     return (
       <div id="red-main">
         <NavBar
@@ -96,28 +101,28 @@ class Red extends Component {
             </ul>
           </div>
           <div className="tab-content">
-          <WhiteSpace size="lg"></WhiteSpace>
-          <InputItem placeholder="请输入手机号码" value={this.state.mobile} clear className="mobile" onChange= {this.handChange.bind(this, 'mobile')}></InputItem>
-          <WhiteSpace size="lg"></WhiteSpace>
-          <TextareaItem placeholder="请贴入地址" value={this.state.url} onChange={this.handChange.bind(this, 'url')} className="linkAddr" rows={5}></TextareaItem>
-          <WhiteSpace size="lg"></WhiteSpace>
-          <Button className="btn" onClick={() => this.props.getRed(this.state)}>OK</Button>
-          <WhiteSpace size="lg"></WhiteSpace>
-          <table className="table">
-            <tbody>
-              <tr>
-                <th>昵称</th>
-                <th>金额</th>
-                <th>大红包</th>
-              </tr>
-              {
-                tr
-              }            
-            </tbody>
-          </table>
-      </div>
+            <WhiteSpace size="lg"></WhiteSpace>
+            <InputItem placeholder="请输入手机号码" value={this.state.mobile} clear className="mobile" onChange={this.handChange.bind(this, 'mobile')}></InputItem>
+            <WhiteSpace size="lg"></WhiteSpace>
+            <TextareaItem placeholder="请贴入地址" value={this.state.url} onChange={this.handChange.bind(this, 'url')} className="linkAddr" rows={5}></TextareaItem>
+            <WhiteSpace size="lg"></WhiteSpace>
+            <Button className="btn" onClick={() => this.props.getRed(this.state)}>OK</Button>
+            <WhiteSpace size="lg"></WhiteSpace>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>昵称</th>
+                  <th>金额</th>
+                  <th>大红包</th>
+                </tr>
+              </thead>
+              <tbody dangerouslySetInnerHTML={createMarkup()}>               
+              </tbody>
+
+            </table>
+          </div>
           <div className="tab-content">
-          <WhiteSpace size="lg"></WhiteSpace>
+            <WhiteSpace size="lg"></WhiteSpace>
             Content of third tab
       </div>
         </Tabs>
