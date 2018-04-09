@@ -12,7 +12,7 @@ var userObj = {
     findAll() {
         return User.findAll()
     },
-   
+
     /**
      * 根据mobile 查找用户信息
      * 
@@ -37,7 +37,7 @@ var userObj = {
                 // mobile: {
                 //     $ne: mobile
                 // }
-                 mobile: mobile                
+                mobile: mobile
             }
         })
     },
@@ -72,6 +72,27 @@ var userObj = {
                     id: '4c61eab8-c694-48a2-8671-a35443d854d8'
                 }
             })
+    },
+
+    /**
+     * 查找并且创建
+     * 
+     * @param {any} tellphone 
+     * @param {any} cookie 
+     * @returns 
+     */
+    findOrCreate(tellphone, cookie) {
+        return User.findOrCreate(
+            {
+                defaults: {
+                    mobile: tellphone,
+                    wxCookie: cookie,
+                },
+                where: {
+                    mobile: tellphone
+                }
+            }
+        )
     }
 
 

@@ -2,7 +2,7 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-30 10:31:01 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-09 16:47:42
+ * @Last Modified time: 2018-04-09 17:42:49
  */
 import React, { Component } from 'react'
 import { NoticeBar, WhiteSpace, Icon, NavBar, Tabs, Badge, InputItem, TextareaItem, Button, Toast, WingBlank } from 'antd-mobile'
@@ -17,23 +17,21 @@ class Red extends Component {
     super(props)
     this.state = {
       mobile: '14782543977',
+      tellphone: '',
+      cookie: '',
       url: 'https://activity.waimai.meituan.com/coupon/sharechannel/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=62930D544D9648CCADA58B8B4E1363C9'
       // url: 'https://activity.waimai.meituan.com/coupon/sharechannel/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=C3AC870A3C9149D7B4B32283E8638144'
     }
   }
   handChange(name, value) {
     this.props.getRedState.code = 0
-    var newState = {}
-    // newState[name] = value != "" ? value.split('?')[0] + '?urlKey=' + this.getParameterValueByName('urlKey') : ""
+    var newState = {}    
     newState[name] = value
     this.setState(newState)
   }
 
 
-  componentDidUpdate() {
-    // if (this.props.getRedState.code == 4002 || this.props.getRedState.code == 4201 || this.props.getRedState.code == 1000 || this.props.getRedState.code == 7002) {
-    //   Toast.info(this.props.getRedState.message, 2, null, false);
-    // }
+  componentDidUpdate() {  
     if ([7001, 4002, 4201, 1000, 7002].includes(this.props.getRedState.code)) {
       Toast.info(this.props.getRedState.message, 2, null, false);
     }
@@ -91,8 +89,8 @@ class Red extends Component {
         <WhiteSpace size="lg"></WhiteSpace>
         <Tabs tabs={tabs}
           initialPage={1}
-          onChange={(tab, index) => { console.log('onChange', index, tab); }}
-          onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
+          onChange={(tab, index) => {}}
+          onTabClick={(tab, index) => { }}
         >
           <div className="tab-content">
             <ul>
@@ -130,7 +128,12 @@ class Red extends Component {
           </div>
           <div className="tab-content">
             <WhiteSpace size="lg"></WhiteSpace>
-            Content of third tab
+            <InputItem placeholder="请输入手机号码" value={this.state.tellphone} clear className="mobile" onChange={this.handChange.bind(this, 'tellphone')}></InputItem>
+            <WhiteSpace size="lg"></WhiteSpace>
+            <TextareaItem placeholder="请贴入微信cookie" value={this.state.cookie} onChange={this.handChange.bind(this, 'cookie')} className="linkAddr" rows={5}></TextareaItem>
+            <WhiteSpace size="lg"></WhiteSpace>
+            <Button className="btn" onClick={() => this.props.getRed(this.state)}>贡献</Button>
+            <WhiteSpace size="lg"></WhiteSpace>        
       </div>
         </Tabs>
       </div>

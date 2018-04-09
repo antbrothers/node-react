@@ -5,7 +5,7 @@ async function getBigRed(url, mobile, cookie) {
     return await redService({ url: url, mobile: mobile, cookie: 'ewxinfo=' + cookie })
 
 }
-module.exports = {
+module.exports = {         
     'POST /api/getRed': async (req, res, next) => {
         var user = await userService.findOneByMobile(req.body.mobile).then(rest => { return rest }).catch(err => { return err })
         var allUser = await userService.find(req.body.mobile).then(result2 => { return result2 }).catch(err => { return err })
@@ -29,5 +29,10 @@ module.exports = {
                 products: { code: 1000, message: '查找不到当前手机号的信息', data: [] }
             })
         }
+    },
+    'POST /api/createCookie': async (req, res, next) => {
+        res.rest({
+            products: userService.findOrCreate(req.body.tellphone, req.body.cookie)
+        })
     }
 }
