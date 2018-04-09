@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
         mobile: DataTypes.STRING,
         userName: DataTypes.STRING,      
         passWord: DataTypes.STRING,
-        wxCookie: DataTypes.STRING        
+        wxCookie: DataTypes.STRING,
+        level: DataTypes.STRING,
+        number: DataTypes.STRING        
     },
         {
             classMethods: {

@@ -1,31 +1,33 @@
 
-
 var redService = require('../services/redService')
 var userService = require('../services/userService')
+async function getBigRed(url, mobile, cookie) {
+    return await redService({ url: url, mobile: mobile, cookie: 'ewxinfo=' + cookie })
+
+}
 module.exports = {
-    'POST /api/getRed': async (req, res, next) => {   
-        var user  = await userService.findOneByMobile(req.body.mobile).then(rest => { return rest }).catch(err=> {return err})        
-        if (typeof user.dataValues == 'object') {
-            var  result = await redService(
-                {
-                    // url: 'https://activity.waimai.meituan.com/coupon/sharechannelredirect/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=477F96D5BB4C42D38E9CCDD4DA3B2AE0&state=123&uiId=0&code=003MxfCd1vo7Fr0pPJzd1cMmCd1MxfCW',
-                    // url: 'https://activity.waimai.meituan.com/coupon/sharechannelredirect/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=F10DC93CF0374537AE6786F2A660AB10&state=123&uiId=0&code=0039lvvt0Tavke1D5rtt0cbGvt09lvvP',
-                    // url: 'https://activity.waimai.meituan.com/coupon/sharechannel/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=2B6F60B4043F496EBE3B8EC647DF2E7D&utm_source=appshare&utm_fromapp=wx',
-                    url: req.body.url,
-                    mobile: user.dataValues.mobile,
-                    cookie: 'ewxinfo=' + user.dataValues.wxCookie
-                }            
-            )      
-            if (result.code == 4002 || result.code == 4201) {
-                res.rest({
-                    products: {code: result.code, message: result.msg, data: result.data.wxCoupons}
-                })
+    'POST /api/getRed': async (req, res, next) => {
+        var user = await userService.findOneByMobile(req.body.mobile).then(rest => { return rest }).catch(err => { return err })
+        var allUser = await userService.find(req.body.mobile).then(result2 => { return result2 }).catch(err => { return err })
+        if (user) {
+            for (var index = 0; index < allUser.length; index++) {
+                var result = await getBigRed(req.body.url, allUser[index].dataValues.mobile, 'ewxinfo=' + allUser[index].dataValues.wxCookie)
+                if (result.code == 100001 && result.count == 1) {
+                    var ret = await getBigRed(req.body.url, user.dataValues.mobile, 'ewxinfo=' + user.dataValues.wxCookie)
+                    res.rest({
+                        products: { code: ret.code, message: ret.msg, data: ret.data.wxCoupons }
+                    })                    
+                } else if ([4201, 1006, 4000, 7002, 7006, 4001, 7001].includes(result.code)) {
+                    res.rest({
+                        products: { code: result.code, message: result.code == 7002 ? 'cookie过期' : result.msg, data: result.data.wxCoupons }
+                    })
+                    break;
+                }                     
             }
         } else {
             res.rest({
-                products: {code: 1000, message: '查找不到当前手机号的信息', data: []}
+                products: { code: 1000, message: '查找不到当前手机号的信息', data: [] }
             })
         }
-        
-    }       
+    }
 }

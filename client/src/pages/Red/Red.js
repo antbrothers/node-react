@@ -2,7 +2,7 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-30 10:31:01 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-08 17:48:54
+ * @Last Modified time: 2018-04-09 16:47:42
  */
 import React, { Component } from 'react'
 import { NoticeBar, WhiteSpace, Icon, NavBar, Tabs, Badge, InputItem, TextareaItem, Button, Toast, WingBlank } from 'antd-mobile'
@@ -17,17 +17,24 @@ class Red extends Component {
     super(props)
     this.state = {
       mobile: '14782543977',
-      url: 'https://activity.waimai.meituan.com/coupon/sharechannel/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=2B6F60B4043F496EBE3B8EC647DF2E7D&utm_source=appshare&utm_fromapp=wx'
+      url: 'https://activity.waimai.meituan.com/coupon/sharechannel/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=62930D544D9648CCADA58B8B4E1363C9'
+      // url: 'https://activity.waimai.meituan.com/coupon/sharechannel/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=C3AC870A3C9149D7B4B32283E8638144'
     }
   }
   handChange(name, value) {
+    this.props.getRedState.code = 0
     var newState = {}
+    // newState[name] = value != "" ? value.split('?')[0] + '?urlKey=' + this.getParameterValueByName('urlKey') : ""
     newState[name] = value
     this.setState(newState)
   }
 
+
   componentDidUpdate() {
-    if (this.props.getRedState.code == 4002 || this.props.getRedState.code == 4201 || this.props.getRedState.code == 1000) {
+    // if (this.props.getRedState.code == 4002 || this.props.getRedState.code == 4201 || this.props.getRedState.code == 1000 || this.props.getRedState.code == 7002) {
+    //   Toast.info(this.props.getRedState.message, 2, null, false);
+    // }
+    if ([7001, 4002, 4201, 1000, 7002].includes(this.props.getRedState.code)) {
       Toast.info(this.props.getRedState.message, 2, null, false);
     }
   }
@@ -37,7 +44,7 @@ class Red extends Component {
       html += `<tr></tr>`
     } else {
       this.props.getRedState.data.map(function (item, index) {
-        html += `<tr key=${index}><td>${item.nick_name}</td><td>${item.coupon_price}</td><td>${item.bestLuck}</td></tr> `        
+        html += `<tr key=${index}><td>${item.nick_name}</td><td>${item.coupon_price}</td><td>${item.bestLuck}</td></tr> `
       })
     }
     return html
@@ -56,8 +63,8 @@ class Red extends Component {
       }
 
     ]
-    var createMarkup = function() { 
-      return {__html: this.cows()}
+    var createMarkup = function () {
+      return { __html: this.cows() }
     }.bind(this);
     return (
       <div id="red-main">
@@ -116,7 +123,7 @@ class Red extends Component {
                   <th>大红包</th>
                 </tr>
               </thead>
-              <tbody dangerouslySetInnerHTML={createMarkup()}>               
+              <tbody dangerouslySetInnerHTML={createMarkup()}>
               </tbody>
 
             </table>

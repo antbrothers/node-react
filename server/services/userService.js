@@ -26,6 +26,22 @@ var userObj = {
         })
     },
     /**
+     * 查找手机号不等于 XXX 的用户信息
+     * 
+     * @param {any} conditioin 
+     * @returns 
+     */
+    find(mobile) {
+        return User.findAll({
+            where: {
+                // mobile: {
+                //     $ne: mobile
+                // }
+                 mobile: mobile                
+            }
+        })
+    },
+    /**
      * 创建表单
      * @param {*} data 
      */

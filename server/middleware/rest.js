@@ -2,7 +2,7 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-23 14:55:34 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-08 15:38:02
+ * @Last Modified time: 2018-04-09 16:06:17
  */
 module.exports = {
     APIError: function(code, message) {
@@ -23,7 +23,7 @@ module.exports = {
                             res.status(100).json({code: 200, message: error, data: []})
                         })   
                     } else {
-                        res.json(data.products)
+                        res.status(200).json(data.products)
                     }
                                                       
                 }

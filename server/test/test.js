@@ -22,9 +22,9 @@ describe('#test express app', () => {
       let result = await request(server)
         .post('/api/insertUser') 
         .send({
-          userName: 'linjianxi',                
-          passWord: '14782543977',
-          mobile: '14782543977',
+          userName: 'ye',                
+          passWord: '15216761038',
+          mobile: '15216761038',
                    
         })
         //.expect(200, 'post 提交api测试')
