@@ -2,11 +2,12 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-30 10:31:01 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-09 17:42:49
+ * @Last Modified time: 2018-04-10 17:35:42
  */
 import React, { Component } from 'react'
 import { NoticeBar, WhiteSpace, Icon, NavBar, Tabs, Badge, InputItem, TextareaItem, Button, Toast, WingBlank } from 'antd-mobile'
 import { red } from '../../redux/actions/red'
+import { createWxInfo } from '../../redux/actions/createWxInfo'
 import { connect } from 'react-redux'
 
 require('./Red.css')
@@ -19,12 +20,14 @@ class Red extends Component {
       mobile: '14782543977',
       tellphone: '',
       cookie: '',
-      url: 'https://activity.waimai.meituan.com/coupon/sharechannel/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=62930D544D9648CCADA58B8B4E1363C9'
+      ewxshinfo: '',
+      url: 'https://activity.waimai.meituan.com/coupon/sharechannel/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=FE76EE67487443CE8369ACDDDCD440B1'
       // url: 'https://activity.waimai.meituan.com/coupon/sharechannel/B2EA8E1ABA8B47EA82DB475BA17B517D?urlKey=C3AC870A3C9149D7B4B32283E8638144'
     }
   }
   handChange(name, value) {
     this.props.getRedState.code = 0
+    this.props.getCreateWx.code =0
     var newState = {}    
     newState[name] = value
     this.setState(newState)
@@ -32,8 +35,11 @@ class Red extends Component {
 
 
   componentDidUpdate() {  
-    if ([7001, 4002, 4201, 1000, 7002].includes(this.props.getRedState.code)) {
+    if ([7001, 4002, 4201, 1000, 7002, 4000].includes(this.props.getRedState.code)) {
       Toast.info(this.props.getRedState.message, 2, null, false);
+    }
+    if ([200].includes(this.props.getCreateWx.code)) {
+      Toast.info('贡献成功,谢谢', 2, null, false)
     }
   }
   cows() {
@@ -42,7 +48,7 @@ class Red extends Component {
       html += `<tr></tr>`
     } else {
       this.props.getRedState.data.map(function (item, index) {
-        html += `<tr key=${index}><td>${item.nick_name}</td><td>${item.coupon_price}</td><td>${item.bestLuck}</td></tr> `
+        html += `<tr key=${index}><td><img class="img-tx" src='${item.head_img_url}'/><span>${item.nick_name}</span></td><td>${item.coupon_price}</td><td>${item.bestLuck}</td></tr> `
       })
     }
     return html
@@ -130,10 +136,12 @@ class Red extends Component {
             <WhiteSpace size="lg"></WhiteSpace>
             <InputItem placeholder="请输入手机号码" value={this.state.tellphone} clear className="mobile" onChange={this.handChange.bind(this, 'tellphone')}></InputItem>
             <WhiteSpace size="lg"></WhiteSpace>
-            <TextareaItem placeholder="请贴入微信cookie" value={this.state.cookie} onChange={this.handChange.bind(this, 'cookie')} className="linkAddr" rows={5}></TextareaItem>
+            <TextareaItem placeholder="请贴入微信cookie: ewxinfo的值" value={this.state.cookie} onChange={this.handChange.bind(this, 'cookie')} className="linkAddr" rows={3}></TextareaItem>
             <WhiteSpace size="lg"></WhiteSpace>
-            <Button className="btn" onClick={() => this.props.getRed(this.state)}>贡献</Button>
-            <WhiteSpace size="lg"></WhiteSpace>        
+            <TextareaItem placeholder="请贴入微信cookie: ewxshinfo" value={this.state.ewxshinfo} onChange={this.handChange.bind(this, 'ewxshinfo')} className="linkAddr" rows={3}></TextareaItem>
+            <WhiteSpace size="lg"></WhiteSpace>
+            <Button className="btn" onClick={() => this.props.createWx(this.state.tellphone, this.state.cookie, this.state.ewxshinfo)}>贡献</Button>
+            <WhiteSpace size="lg"></WhiteSpace>
       </div>
         </Tabs>
       </div>
@@ -142,7 +150,8 @@ class Red extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    getRedState: state.red
+    getRedState: state.red,
+    getCreateWx: state.wxInfo
   }
 }
 
@@ -150,6 +159,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getRed: (userInfo) => {
       dispatch(red(userInfo))
+    },
+    createWx: (tellphone, cookie, ewxshinfo) => {
+      dispatch(createWxInfo(tellphone, cookie, ewxshinfo))
     }
   }
 }

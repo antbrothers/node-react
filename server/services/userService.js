@@ -59,42 +59,38 @@ var userObj = {
         })
     },
     /**
-     * 更新记录
+     * 更新 cookie  记录
      */
     update(data) {
         return User.update(
             {
-                userName: 121,
-                firstName: 'frfr'
+                wxCookie: data.wxCookie,
+                ewxShinfo: data.ewxShinfo
             },
             {
                 where: {
-                    id: '4c61eab8-c694-48a2-8671-a35443d854d8'
+                    mobile: data.tellphone
                 }
             })
     },
-
-    /**
-     * 查找并且创建
-     * 
-     * @param {any} tellphone 
-     * @param {any} cookie 
-     * @returns 
-     */
-    findOrCreate(tellphone, cookie) {
-        return User.findOrCreate(
+/**
+ * 更新 领取次数
+ * @param {手机号码} mobile 
+ * @param {当天领取次数} level 
+ * @param {总共领取次数} number 
+ */
+    updateLevelNumber(mobile,level, number) {
+        return User.update(
             {
-                defaults: {
-                    mobile: tellphone,
-                    wxCookie: cookie,
-                },
+                level: level,
+                number: number
+            },
+            {
                 where: {
-                    mobile: tellphone
+                    mobile: mobile
                 }
             }
         )
     }
-
-
 }
 module.exports = userObj;

@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         userName: DataTypes.STRING,      
         passWord: DataTypes.STRING,
         wxCookie: DataTypes.STRING,
+        ewxShinfo: DataTypes.STRING,
         level: DataTypes.STRING,
         number: DataTypes.STRING        
     },

@@ -7,29 +7,27 @@ const crypto = require('../util/crypto')
 
 const origin = 'https://activity.waimai.meituan.com'
 
-var initAxios = function (url) {
+var initAxios = function (url, cookie) {
 
-    this.params = {
-        //urlKey: '477F96D5BB4C42D38E9CCDD4DA3B2AE0',
-        // code: '003MxfCd1vo7Fr0pPJzd1cMmCd1MxfCW',
-        // urlKey: '2B6F60B4043F496EBE3B8EC647DF2E7D',
+    this.params = {      
         urlKey: querystring.parse(url.split("?")[1]).urlKey,
         code: '0039lvvt0Tavke1D5rtt0cbGvt09lvvP',
         state: 123,
         uiId: 0,
         channelUrlKey: url.match(/\/(?:sharechannelredirect|sharechannel)\/(.*?)\?/).pop(),
+        cookie: cookie
     }
 
 }
 initAxios.prototype = {
     request: function () {
         return axios.create({
-            baseURL: origin,
+            baseURL: origin,                      
             headers: {
+                cookie: this.params.cookie,
                 origin,
                 referer: origin,
-                'user-agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 MicroMessenger/6.5.2.501 NetType/WIFI WindowsWechat QBCore/3.43.691.400 QQBrowser/9.0.2524.400'
-                //'user-agent': 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T MicroMessenger) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36'
+                'user-agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 MicroMessenger/6.5.2.501 NetType/WIFI WindowsWechat QBCore/3.43.691.400 QQBrowser/9.0.2524.400'                   
             },
             transformRequest: [data => querystring.stringify(data)]
         })
@@ -84,16 +82,7 @@ initAxios.prototype = {
         _this.params.platform = 11
         _this.params.partner = 162
         _this.params.riskLevel = 71
-        var res = await _this.post('/coupon/grabShareCoupon', _this.params,
-            {
-                headers: {
-                    cookie: opt.cookie,
-                    origin,
-                    referer: origin,
-                    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 MicroMessenger/6.5.2.501 NetType/WIFI WindowsWechat QBCore/3.43.691.400 QQBrowser/9.0.2524.400'
-                    //'user-agent': 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T MicroMessenger) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36'
-                }
-            })
+        var res = await _this.post('/coupon/grabShareCoupon',  _this.params)
         const length = res.data.wxCoupons.length
         const number = data.data.share_title.match(/第(\d+)个/).pop()
 
@@ -118,7 +107,7 @@ initAxios.prototype = {
 
 module.exports = async params => {
     try {
-        const init = new initAxios(params.url)
+        const init = new initAxios(params.url, params.cookie)
         const res = await init.lottery(params)
         return res
     } catch (e) {
