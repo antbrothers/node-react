@@ -27,10 +27,10 @@ body{
     border-radius: 10px;
 }
 .tab-content{
-    display: 'flex';
-     align-items: 'center';
-      height: '150px';
-       background-color: '#fff' ;
+    /* display: 'flex';
+     align-items: 'center'; */
+      /* height: '150px';
+       background-color: '#fff' ; */
 }
 .tab-content ul {
     padding: 20px;
@@ -101,6 +101,7 @@ table.table {
 .table tr td {
     padding: 20px;   
     border: 1Px solid #e9e9e9;
+    text-align: left;
 }
 .img-tx {
     width: 70px;

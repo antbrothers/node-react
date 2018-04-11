@@ -34,10 +34,10 @@ var userObj = {
     find(mobile) {
         return User.findAll({
             where: {
-                mobile: {
-                    $ne: mobile
-                }
-                // mobile: mobile
+                // mobile: {
+                //     $ne: mobile
+                // }
+                 mobile: mobile
             }
         })
     },

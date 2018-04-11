@@ -2,7 +2,7 @@
  * @Author: jianxi_lin  
  * @Date: 2018-03-21 09:22:02 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-04 09:38:26
+ * @Last Modified time: 2018-04-11 17:08:34
  */
 var express = require('express');
 var path = require('path');
@@ -17,6 +17,7 @@ var ejs = require('ejs');
 var winston = require('./util/logger');
 var rest = require('./middleware/rest')
 var controller = require('./controller')
+
 var app = express();
 
 
@@ -41,12 +42,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'views')));
+
 
 
 // 初始化日志模块
 winston.initRequestLogger(app);
 app.use(rest.restify())
 app.use(controller())
+
+app.use('/html', express.Router().get('/index', function(req, res, next) {
+  res.sendfile(__dirname + '/views/index.html');
+}))
 
 // winston.initErrorLogger(app);
 

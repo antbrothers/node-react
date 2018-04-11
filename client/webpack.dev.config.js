@@ -31,11 +31,11 @@ const devConfig = {
         host: '0.0.0.0',
         proxy: {
             "/api/*": {
-                target: "http://localhost:3000",
+                target: "http://114.67.143.209:3000/",
                 changeOrigin: true              
             },
             "/external/*": {
-                target: "http://localhost:3000",
+                target: "http://114.67.143.209:3000/",
                 changeOrigin: true               
             }          
         }

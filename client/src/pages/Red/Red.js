@@ -2,16 +2,14 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-30 10:31:01 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-11 11:26:12
+ * @Last Modified time: 2018-04-11 17:47:42
  */
 import React, { Component } from 'react'
 import { NoticeBar, WhiteSpace, Icon, NavBar, Tabs, Badge, InputItem, TextareaItem, Button, Toast, WingBlank } from 'antd-mobile'
 import { red } from '../../redux/actions/red'
 import { createWxInfo } from '../../redux/actions/createWxInfo'
 import { connect } from 'react-redux'
-
 require('./Red.css')
-
 class Red extends Component {
 
   constructor(props) {
