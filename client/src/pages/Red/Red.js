@@ -2,7 +2,7 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-30 10:31:01 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-11 10:33:11
+ * @Last Modified time: 2018-04-11 11:26:12
  */
 import React, { Component } from 'react'
 import { NoticeBar, WhiteSpace, Icon, NavBar, Tabs, Badge, InputItem, TextareaItem, Button, Toast, WingBlank } from 'antd-mobile'
@@ -48,7 +48,7 @@ class Red extends Component {
       html += `<tr></tr>`
     } else {
       this.props.getRedState.data.map(function (item, index) {
-        html += `<tr key=${index}><td><img class="img-tx" src='${item.head_img_url}'/><span>${item.nick_name}</span></td><td>${item.coupon_price}</td><td>${item.bestLuck}</td></tr> `
+        html += `<tr key=${index}><td ><img class="img-tx" src='${item.head_img_url}'/><span>${item.nick_name}</span></td><td>${item.coupon_price}</td><td>${item.bestLuck}</td></tr> `
       })
     }
     return html
@@ -77,19 +77,15 @@ class Red extends Component {
           onLeftClick={() => {
             console.log('onleftClick');
           }}
-        >领取红包</NavBar>
+        >领取大红包</NavBar>
 
         <WhiteSpace size="lg" />
         <div className="tip-one tip-comm">
-          ·加媒指责中国绕开WTO报复美国 中方回应
-          ·未来三天全国大部地区无明显降水 气温逐步回升
-          ·纽约特朗普大楼50层起火 特朗普立刻发推回应
-          ·巴西前总统卢拉表示将入狱服刑 坚称“无罪”
+          每天5次领取红包机会         
           </div>
         <WhiteSpace size="lg"></WhiteSpace>
         <div className="tip-two tip-comm">
-          ·加媒指责中国绕开WTO报复美国 中方回应
-          ·未来三天全国大部地区无明显降水 气温逐步回升
+            请大家贡献自己的cookie         
           </div>
         <WhiteSpace size="lg"></WhiteSpace>
         <Tabs tabs={tabs}

@@ -27,7 +27,10 @@ body{
     border-radius: 10px;
 }
 .tab-content{
-    display: 'flex'; alignItems: 'center'; height: '150px'; backgroundColor: '#fff' ;
+    display: 'flex';
+     align-items: 'center';
+      height: '150px';
+       background-color: '#fff' ;
 }
 .tab-content ul {
     padding: 20px;
@@ -74,10 +77,10 @@ body{
     color: white;
     font-size: 24px; /*!px*/
     border: none;
-    background-color: #4ebff3;
+    background-color: #108ee9;
     line-height: 70px;
 }
-.table {
+table.table {
     width: 710px;   
     margin-right: 20px;
     margin-left: 20px;
