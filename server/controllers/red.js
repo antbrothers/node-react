@@ -28,7 +28,7 @@ module.exports = {
                     })
                     break;
                 } else {
-                    await updateLevelNumber(allUser[index].dataValues.mobile, allUser[index].dataValues.level, allUser[index].dataValues.number)
+                    await updateLevelNumber(allUser[index].dataValues.mobile, parseInt(allUser[index].dataValues.level) + 1,parseInt(allUser[index].dataValues.number) +1)
                 }
             }
         } else {

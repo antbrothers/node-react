@@ -2,7 +2,7 @@
  * @Author: jianxi_lin 
  * @Date: 2018-03-30 10:31:01 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-10 17:35:42
+ * @Last Modified time: 2018-04-11 10:33:11
  */
 import React, { Component } from 'react'
 import { NoticeBar, WhiteSpace, Icon, NavBar, Tabs, Badge, InputItem, TextareaItem, Button, Toast, WingBlank } from 'antd-mobile'
@@ -54,7 +54,6 @@ class Red extends Component {
     return html
   }
   render() {
-
     const tabs = [
       {
         title: <Badge>规则</Badge>
@@ -78,7 +77,7 @@ class Red extends Component {
           onLeftClick={() => {
             console.log('onleftClick');
           }}
-        >NavBar</NavBar>
+        >领取红包</NavBar>
 
         <WhiteSpace size="lg" />
         <div className="tip-one tip-comm">
