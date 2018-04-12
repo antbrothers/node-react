@@ -1,11 +1,11 @@
 # react-cli
-```
+```js
 后端： node express winston winston-daily-rotate-file sequlize mysql
 前端： rect redux react-router webpack 4.0
 ```
 ##### 项目结构
 
-```
+```js
  #server
  |--- bin
  |    |--- www                              // 项目启动文件
@@ -51,7 +51,7 @@
 ```
 
 ##### 自动扫描controller文件,并且导出router, 在app.js 一次使用
-```
+```js
 #controller.js
 ...function addController(router, dir) {
     fs.readdirSync(__dirname + '/' + dir).filter((file) => {
@@ -66,7 +66,7 @@
 
 ```
 ##### 使用sequlize 实现关系对象映射
-```
+```js
 # models/index.js
 try {
     sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.password, dbConfig);
@@ -91,7 +91,7 @@ db.Sequelize = Sequelize;
 ```
 
 ##### 使用http-proxy-middleware，处理第三api方向代理
-```
+```js
 # config/proxy.js
  module.exports = {
      proxyTable: {
@@ -120,5 +120,4 @@ Object.keys(proxyTable).forEach(function(context) {
 })
 ```
 ##### 项目
-<img src="https://github.com/antbrothers/react-cli/blob/master/client/src/assest/images/af12940f44a0ac473b8db68231dd530.png" width="365" height="619"/>
-<img src="https://github.com/antbrothers/react-cli/blob/master/client/src/assest/images/ed47be914140c72e7ff1fc54d834e15.png" width="365" height="619"/>
+<img src="https://github.com/antbrothers/react-cli/blob/master/client/src/assest/images/af12940f44a0ac473b8db68231dd530.png" width="365" height="619"/><img src="https://github.com/antbrothers/react-cli/blob/master/client/src/assest/images/ed47be914140c72e7ff1fc54d834e15.png" width="365" height="619"/>
