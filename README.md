@@ -2,6 +2,7 @@
 ```js
 后端： node express winston winston-daily-rotate-file sequlize mysql
 前端： rect redux react-router webpack 4.0
+喜欢的请给个star吧
 ```
 ##### 项目结构
 
