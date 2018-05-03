@@ -46,7 +46,7 @@ class Red extends Component {
       html += `<tr></tr>`
     } else {
       this.props.getRedState.data.map(function (item, index) {
-        html += `<tr key=${index}><td ><img class="img-tx" src='${item.head_img_url}'/><span>${item.nick_name}</span></td><td>${item.coupon_price}</td><td>${item.bestLuck}</td></tr> `
+        html += `<tr key=${index}><td ><img class="img-tx" src='${item.head_img_url}'/><span>${item.nick_name}</span></td><td>${(item.coupon_price/100).toFixed(2)}</td><td>${item.bestLuck == true? '<span class="yes">✔</span>' :'✘'}</td></tr> `
       })
     }
     return html
@@ -60,7 +60,7 @@ class Red extends Component {
         title: <Badge>领取</Badge>
       },
       {
-        title: <Badge dot>贡献</Badge>
+        title: <Badge dot>cookie</Badge>
       }
 
     ]
@@ -79,38 +79,36 @@ class Red extends Component {
 
         <WhiteSpace size="lg" />
         <div className="tip-one tip-comm">
-          每天5次领取红包机会         
+        每天有5次领取红包机会，领取前请先提交微信cookie    
           </div>
         <WhiteSpace size="lg"></WhiteSpace>
         <div className="tip-two tip-comm">
-            请大家贡献自己的cookie         
+        cookie为美团加密的字符串，用来验证账户唯一性，与微信安全隐私等无关        
           </div>
         <WhiteSpace size="lg"></WhiteSpace>
         <Tabs tabs={tabs}
           initialPage={1}
+          swipeable = {false}
           onChange={(tab, index) => {}}
           onTabClick={(tab, index) => { }}
         >
           <div className="tab-content">
             <ul>
-              <li>1. 次数不足以领取大红包，胡乱提交链接者，不仅领不到大红包还可能会产生不必要的次数消耗。</li>
+              <li>1.领取前，请勿打开红包链接，并确保最大红包未被领取</li>
+              <WhiteSpace size="lg"></WhiteSpace>                                      
+              <li>2.此应用无法领取下一个就是大红包的情况，例如：第7个手气最佳，已有6人领取</li>
               <WhiteSpace size="lg"></WhiteSpace>
-              <li>2. 提交 “最大红包已被领取” 的链接，也可能产生不必要的次数消耗，所以领取前，请确认最大红包还未被人领。</li>
-              <WhiteSpace size="lg"></WhiteSpace>
-              <li>3. 要领最大红包的手机号，切记不要提前打开红包链接，会领到小红包，无法再领最大，而且会浪费你的次数。</li>
-              <WhiteSpace size="lg"></WhiteSpace>
-              <li>4. 美团限制每个手机号一天只能领 5 个红包，请确保你填写的手机号还可以领，否则会浪费你的次数。</li>
-              <WhiteSpace size="lg"></WhiteSpace>
-              <li>5. 特别注意，无法领取差一个就是大红包的情况。例如：第七个是最大红包，已经有六个人领了，此时不要使用我们的领取功能。</li>
+              <li>3.请不要随意提交，以免造成不必要的次数浪费，影响他人使用。</li>
+              <li>4.每个帐号每天最多被动领取4个小红包</li>
             </ul>
           </div>
           <div className="tab-content">
             <WhiteSpace size="lg"></WhiteSpace>
             <InputItem placeholder="请输入手机号码" value={this.state.mobile} clear className="mobile" onChange={this.handChange.bind(this, 'mobile')}></InputItem>
             <WhiteSpace size="lg"></WhiteSpace>
-            <TextareaItem placeholder="请贴入地址" value={this.state.url} onChange={this.handChange.bind(this, 'url')} className="linkAddr" rows={5}></TextareaItem>
+            <TextareaItem placeholder="请贴入红包链接" value={this.state.url} onChange={this.handChange.bind(this, 'url')} className="linkAddr" rows={5}></TextareaItem>
             <WhiteSpace size="lg"></WhiteSpace>
-            <Button className="btn" onClick={() => this.props.getRed(this.state)}>OK</Button>
+            <Button className="btn" onClick={() => this.props.getRed(this.state)}>领取</Button>
             <WhiteSpace size="lg"></WhiteSpace>
             <table className="table">
               <thead>
@@ -131,9 +129,9 @@ class Red extends Component {
             <WhiteSpace size="lg"></WhiteSpace>
             <TextareaItem placeholder="请贴入微信cookie: ewxinfo的值" value={this.state.cookie} onChange={this.handChange.bind(this, 'cookie')} className="linkAddr" rows={3}></TextareaItem>
             <WhiteSpace size="lg"></WhiteSpace>
-            <TextareaItem placeholder="请贴入微信cookie: ewxshinfo" value={this.state.ewxshinfo} onChange={this.handChange.bind(this, 'ewxshinfo')} className="linkAddr" rows={3}></TextareaItem>
+            <TextareaItem placeholder="请贴入微信cookie: ewxshinfo的值" value={this.state.ewxshinfo} onChange={this.handChange.bind(this, 'ewxshinfo')} className="linkAddr" rows={3}></TextareaItem>
             <WhiteSpace size="lg"></WhiteSpace>
-            <Button className="btn" onClick={() => this.props.createWx(this.state.tellphone, this.state.cookie, this.state.ewxshinfo)}>贡献</Button>
+            <Button className="btn" onClick={() => this.props.createWx(this.state.tellphone, this.state.cookie, this.state.ewxshinfo)}>提交</Button>
             <WhiteSpace size="lg"></WhiteSpace>
       </div>
         </Tabs>
