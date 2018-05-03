@@ -3,7 +3,7 @@
  * @Desc: 接入第三方api
  * @Date: 2018-04-03 14:49:38 
  * @Last Modified by: jianxi_lin
- * @Last Modified time: 2018-04-03 14:50:08
+ * @Last Modified time: 2018-05-03 12:48:20
  */
 
 
@@ -12,9 +12,9 @@ var http = require('http');
 module.exports = async (ctx) => {
     let options = {
         port: 80,
-        hostname: 'www.123369.com.cn',
+        hostname: 'data.mboss.mwee.cn',
         method: 'GET',
-        path: '/api/ServiceList'
+        path: '/rest/webApi'
     };
     return new Promise((resolve, reject) => {
         let request = http.request(options, (socket) => {

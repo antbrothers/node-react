@@ -18,18 +18,18 @@ describe('#test express app', () => {
     //     .expect(200, '接口测试查看返回结果');
     // })
 
-    it ('#test Post /api/insertUser', async () => {
-      let result = await request(server)
-        .post('/api/insertUser') 
-        .send({
-          userName: 'ye',                
-          passWord: '15216761038',
-          mobile: '15216761038',
+    // it ('#test Post /api/insertUser', async () => {
+    //   let result = await request(server)
+    //     .post('/api/insertUser') 
+    //     .send({
+    //       userName: 'ye',                
+    //       passWord: '15216761038',
+    //       mobile: '15216761038',
                    
-        })
-        //.expect(200, 'post 提交api测试')
-        .expect(200)
-    })
+    //     })
+    //     //.expect(200, 'post 提交api测试')
+    //     .expect(200)
+    // })
 
     // it('#test POST /external', (done) => {
     //   request(server)
@@ -56,13 +56,13 @@ describe('#test express app', () => {
     //     })
     // })
 
-    // it ('#测试 httpclient', function() {      
-    //   return example().then(result => {
-    //     console.log(result);        
-    //   }).catch(err => {
-    //     console.log('err:' + err);        
-    //   })
-    // })
+    it ('#测试 httpclient', function() {      
+      return example().then(result => {
+        console.log(result);        
+      }).catch(err => {
+        console.log('err:' + err);        
+      })
+    })
     
     // it('#test 红包', function() {
     //   return red({
