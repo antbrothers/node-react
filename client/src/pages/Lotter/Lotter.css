@@ -1,0 +1,63 @@
+.lotter-contain {
+  width: 750px;
+  height: 1334px;
+  background-image: url(http://www.jsdaima.com/Upload/1482283667/cjbg.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+body{
+
+  background-image: url(http://www.jsdaima.com/Upload/1482283667/cjbg.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+*{
+  margin-left: 0;padding-left: 0;
+}
+#title{
+  width: 560px;
+  height: 321px;
+  margin: 200px auto 0 auto;
+}
+
+.shanDeng,.shanDeng2{
+  width: 429px;
+  height: 429px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin: 44px auto 0 auto;
+}
+
+.shanDeng{
+  background-image: url(http://www.jsdaima.com/Upload/1482283667/shandeng1.png);
+}
+.shanDeng2{
+  background-image: url(http://www.jsdaima.com/Upload/1482283667/shandeng2.png);
+}
+
+#btn .cjBtnDom,#btn .cjBtn,.shanDeng .active,.shanDeng td{
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+#btn.cjBtn{
+  background-image: url(http://www.jsdaima.com/Upload/1482283667/buttonUp.png);
+}
+#btn.cjBtnDom{
+  background-image: url(http://www.jsdaima.com/Upload/1482283667/buttonDown.png);
+}
+
+
+.luck .active{
+  background-image: url(http://www.jsdaima.com/Upload/1482283667/active.png);
+}
+.shanDeng td{
+  text-align: center;
+  background-image: url(http://www.jsdaima.com/Upload/1482283667/proBj.png);
+}
+.shanDeng table{
+  padding-left: 63px;
+  padding-top: 63px;
+}
