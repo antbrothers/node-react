@@ -3,16 +3,35 @@ require('./Lotter.css')
 class Lotter extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      idnex: -1, // 当前转到哪个位置
+      count: 0 , // 总共有多少个位置
+      timer: 0, // setTimede ID 
+      speed: 20, // 初始转动速度
+      times: 0, // 转到次数
+      cycle: 50, // 转动基本次数至少要转多少次再进入到抽奖环节
+      prize: -1 // 中奖位置
+    }
+  }
+  // 初始化转盘
+  init () {    
+  }
+  // 转动
+  roll () {
+    
+  }
+  lotterClick () {
+    console.log(121)
   }
   render() {
     return (
       <div className="lotter-contain">
        <div className="shanDeng">
        <div className="luck">
-          <table>
+          <table className="table-main">
             <tbody>
               <tr>
-                <td className="luck-unit luck-unit-0">
+                <td className="luck-unit luck-unit-0 active">
                   <img src="http://www.jsdaima.com/Upload/1482283667/1.png" />
                 </td>
                 <td className="luck-unit luck-unit-1">
@@ -29,7 +48,7 @@ class Lotter extends Component {
                 <td className="luck-unit luck-unit-11">
                   <img src="http://www.jsdaima.com/Upload/1482283667/6.png" />
                 </td>
-                <td rowSpan="2" colSpan="2" className="cjBtn" id="btn" />
+                <td rowSpan="2" colSpan="2" className="cjBtn" id="btn" onClick={() => this.lotterClick()} />
                 <td className="luck-unit luck-unit-4">
                   <img src="http://www.jsdaima.com/Upload/1482283667/5.png" />
                 </td>
@@ -59,8 +78,7 @@ class Lotter extends Component {
             </tbody>
           </table>
         </div>
-       </div>
-        
+       </div>        
       </div>
     )
   }
