@@ -4,26 +4,33 @@ class Lotter extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      idnex: -1, // 当前转到哪个位置
+      index: 0, // 当前转到哪个位置
       count: 0 , // 总共有多少个位置
       timer: 0, // setTimede ID 
       speed: 20, // 初始转动速度
       times: 0, // 转到次数
       cycle: 50, // 转动基本次数至少要转多少次再进入到抽奖环节
-      prize: -1 // 中奖位置
+      prize: -1, // 中奖位置
+      luckUnit0: true,
+      luckUnit1: false
     }
   }
   // 初始化转盘
-  init () {    
+  init () {
   }
   // 转动
   roll () {
-    
+    console.log(this)
+    var luckNum = `luckUnit${this.state.index}`
+    console.log(luckNum)
+    this.setState({
+      luckNum : false
+    })
   }
   lotterClick () {
-    console.log(121)
+    this.roll()
   }
-  render() {
+  render() {   
     return (
       <div className="lotter-contain">
        <div className="shanDeng">
@@ -31,7 +38,7 @@ class Lotter extends Component {
           <table className="table-main">
             <tbody>
               <tr>
-                <td className="luck-unit luck-unit-0 active">
+                <td className={`luck-unit luck-unit-0 ${this.state.luckUnit0 === true ? 'active' : ''}`}>
                   <img src="http://www.jsdaima.com/Upload/1482283667/1.png" />
                 </td>
                 <td className="luck-unit luck-unit-1">
