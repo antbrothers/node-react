@@ -20,15 +20,28 @@ class Lotter extends Component {
   }
   // 转动
   roll () {
-    console.log(this)
     var luckNum = `luckUnit${this.state.index}`
-    console.log(luckNum)
-    this.setState({
-      luckNum : false
+    var change = {}
+    change[luckNum] = false
+    this.setState(change, () => {
+      // 当前位置往前移一位
+      this.setState({
+        index: this.state.index + 1
+      }, () => {
+        var luckNum = `luckUnit${this.state.index}`
+        var change2 = {}
+        change2[luckNum] = true
+        this.setState(change2)
+      })
     })
   }
+  // 开始转动事件
   lotterClick () {
-    this.roll()
+    var self = this
+    self.roll()
+    setTimeout(() => {
+      self.lotterClick()
+    }, self.state.speed)    
   }
   render() {   
     return (
@@ -41,7 +54,7 @@ class Lotter extends Component {
                 <td className={`luck-unit luck-unit-0 ${this.state.luckUnit0 === true ? 'active' : ''}`}>
                   <img src="http://www.jsdaima.com/Upload/1482283667/1.png" />
                 </td>
-                <td className="luck-unit luck-unit-1">
+                <td className={`luck-unit luck-unit-1 ${this.state.luckUnit1 === true ? 'active': ''}`}>
                   <img src="http://www.jsdaima.com/Upload/1482283667/2.png" />
                 </td>
                 <td className="luck-unit luck-unit-2">
